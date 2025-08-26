@@ -1655,4 +1655,58 @@ public class DBQueries extends javax.swing.JDialog {
 
 	
 	}
+
+	public String getDetails_MedflowDocUploading(String serviceType, int service, String instance) throws SQLException {
+
+		String responseText;
+
+		mySt1 = myCon.createStatement();
+		myQuery1 = "select count(*) as count from SkypeCDRBackLog.medflow_docupload where Status is null and service = ? and instance = ? ;";
+		myPst = myCon.prepareStatement(myQuery1);
+		myPst.setInt(1, service);
+		myPst.setString(2, instance);
+		rs1 = myPst.executeQuery();
+		rs1.next();
+
+		int resizePDFCount = rs1.getInt("count");
+
+		if (resizePDFCount == 0) {
+
+			closeDBConnection();
+			return "Currently No File is Processing";
+
+		}else {
+
+			mySt1 = myCon.createStatement();
+			myQuery1 = "select ID, Reccount , RequestFileName from SkypeCDRBackLog.medflow_docupload where "
+					+ "Status is null and service = ? and instance = ? ;";
+			myPst = myCon.prepareStatement(myQuery1);
+			myPst.setInt(1, service);
+			myPst.setString(2, instance);
+			rs1 = myPst.executeQuery();
+			rs1.next();
+
+			int fileid = rs1.getInt("ID");
+			int totalCount = rs1.getInt("Reccount");
+			String requestFilename = rs1.getString("RequestFileName");
+
+			mySt1 = myCon.createStatement();
+			myQuery1 = "select count(1) as count from medflow_docupload_detail where fileid = ? ;";
+			myPst = myCon.prepareStatement(myQuery1);
+			myPst.setInt(1, fileid);
+			rs1 = myPst.executeQuery();
+			rs1.next();
+
+			int processCount = rs1.getInt("count");
+
+			responseText = "Filename " + requestFilename + " Have Total Records " + totalCount
+					+ " & Processed Records Count is " + processCount;
+			
+			closeDBConnection();
+			return responseText;
+		}
+
+	
+	
+	}
 }

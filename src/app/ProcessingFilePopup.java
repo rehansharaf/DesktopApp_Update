@@ -280,6 +280,36 @@ public class ProcessingFilePopup extends javax.swing.JDialog {
 	    	}else if(serviceType.equals("Ringcentral_FaxReceipt")) {
 	    		String filename = dbquery.getDetailsFaxReceiptDownload(serviceType);
 		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_Pharmacy_2")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,2,"Pharmacy");
+		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_Pharmacy_1")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,1,"Pharmacy");
+		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_PI_2")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,2,"PI");
+		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_PI_1")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,1,"PI");
+		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_IWP_2")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,2,"IWP");
+		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_IWP_1")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,1,"IWP");
+		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_KHI_4")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,4,"KHI");
+		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_KHI_3")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,3,"KHI");
+		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_KHI_2")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,2,"KHI");
+		    	jTextPane1.setText(filename);
+	    	}else if(serviceType.equals("MedflowDocUpload_KHI_1")) {
+	    		String filename = dbquery.getDetails_MedflowDocUploading(serviceType,1,"KHI");
+		    	jTextPane1.setText(filename);
 	    	}
 	
 	    	
