@@ -2700,16 +2700,21 @@ public class MainUI extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
+        	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
-        			.addComponent(lblVersion))
+        			.addGap(42))
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(25)
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(jScrollPane1, Alignment.TRAILING))
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addContainerGap(657, Short.MAX_VALUE)
+        					.addComponent(lblVersion, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(25)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jScrollPane1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+        						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE))))
         			.addGap(26))
         );
         layout.setVerticalGroup(
@@ -2717,6 +2722,7 @@ public class MainUI extends javax.swing.JFrame {
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(jLabel1)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(lblVersion)
         			.addGap(18)
         			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
