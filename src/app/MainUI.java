@@ -135,7 +135,6 @@ public class MainUI extends javax.swing.JFrame {
         btnConexemRFAQueue = new javax.swing.JButton();
         btnConexemRFAProcessing = new javax.swing.JButton();
         btnConexemRFAFileSample = new javax.swing.JButton();
-        jLabelDocMerging = new javax.swing.JLabel();
         btnInjuredWorkerDownload = new javax.swing.JButton();
         btnCandRDownload = new javax.swing.JButton();
         btnConexemRussmanDataFetchDownload = new javax.swing.JButton();
@@ -5048,7 +5047,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabelDocMerging;
     private javax.swing.JScrollPane jScrollPane1;
     private JLabel lblDocumentmerging;
     private JButton btnDocMergingUpload;
