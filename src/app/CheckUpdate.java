@@ -26,7 +26,7 @@ public class CheckUpdate {
 	
 	static Properties prop;
 	static FTPClient ftp;
-	static String currentVersion = "1.1";
+	static String currentVersion = "1.2";
 	static String currentPath = "";
 	static boolean conSuccess = false;
 	static boolean needUpdate = false;
