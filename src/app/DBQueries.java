@@ -7,8 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 public class DBQueries extends javax.swing.JDialog {
+	
+	private static final long serialVersionUID = 1L;
+	
+	private static final Logger logger = LoggerConfig.getLogger(DBQueries.class);
 
 	public static final String dbClassName = "com.mysql.cj.jdbc.Driver";
 	Connection myCon = null;
@@ -18,12 +23,16 @@ public class DBQueries extends javax.swing.JDialog {
 	String myQuery1;
 	String mySQL, myUName, myPswd;
 	String p1, p4, p6, p7, p8, p9, p10, p11;
-	private String dbhost = "10.0.0.92";
-	private String dbuser = "ops";
-	private String dbpass = "Operation@4%1";
+	private String dbhost = "";
+	private String dbuser = "";
+	private String dbpass = "";
 
 	public DBQueries() throws ClassNotFoundException, SQLException {
 
+		dbhost = CheckUpdate.prop_local.getProperty("dbhost");
+		dbuser = CheckUpdate.prop_local.getProperty("dbuser");
+		dbpass = CheckUpdate.prop_local.getProperty("dbpass");
+		
 		setModal(true);
 		dbConnection();
 		setModal(false);
@@ -267,70 +276,22 @@ public class DBQueries extends javax.swing.JDialog {
 
 		myCon.close();
 	}
+	
+	
 
 	private void dbConnection() {
-		
-	  try {	
-		mySQL = "jdbc:mysql://" + dbhost + ":3306/SkypeCDRBackLog?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
-		Class.forName(dbClassName);
-		myCon = DriverManager.getConnection(mySQL,dbuser,dbpass);
-	  }catch(Exception sqe) {
-		  
-		  ErrorFrame erFrame = new ErrorFrame("Error: Establishing Connection with Database");
-		  erFrame.setVisible(true);
-		  sqe.printStackTrace();
-	  }
-		
-		
-		/*mySQL = "jdbc:mysql://" + dbhost + ":3306/SkypeCDRBackLog?autoReconnect=true&useSSL=false";
-		try {
-			myCon = DriverManager.getConnection(mySQL, dbuser, dbpass);
-		} catch (SQLException e2) {
-			e2.printStackTrace();
-		}
+	    try {
+	        mySQL = "jdbc:mysql://" + dbhost + ":3306/SkypeCDRBackLog?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true"
+	        		+ "&connectTimeout=5000&socketTimeout=5000";
+	        Class.forName(dbClassName);
+	        myCon = DriverManager.getConnection(mySQL, dbuser, dbpass);
+	    } catch (Exception sqe) {
+	        ErrorFrame erFrame = new ErrorFrame("Error: Establishing Connection with Database");
+	        erFrame.setVisible(true);
 
-		   
-		try {
-			Class.forName(dbClassName);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			myCon = DriverManager.getConnection(mySQL,myUName,myPswd);
-		} catch (SQLException e1) {
-			ErrorFrame erFrame = new ErrorFrame("Error: Establishing Connection with Database");
-			erFrame.setVisible(true);
-			e1.printStackTrace();
-		}*/
-
-		/*try {
-
-			mySt1 = myCon.createStatement();
-			myQuery1 = "select * From SkypeCDRBackLog.mergepdf2 limit 1 ;";
-			myPst = myCon.prepareStatement(myQuery1);
-			rs1 = myPst.executeQuery();
-			rs1.next();
-
-		} catch (Exception e) {
-
-			mySQL = "jdbc:mysql://" + dbhost + ":3306/SkypeCDRBackLog?autoReconnect=true&useSSL=false";
-			try {
-				Class.forName(dbClassName);
-			} catch (ClassNotFoundException el) {
-				e.printStackTrace();
-			}
-			try {
-				myCon = DriverManager.getConnection(mySQL, dbuser, dbpass);
-			} catch (SQLException el) {
-
-				ErrorFrame erFrame = new ErrorFrame("Error: Establishing Connection with Database");
-				erFrame.setVisible(true);
-
-				e.printStackTrace();
-			}
-
-		}*/
-
+	        // Log centrally instead of just printing stack trace
+	        LoggerConfig.logException(logger,"Database connection failed", sqe);
+	    }
 	}
 
 	public String getDetailsFetchHearing1(String serviceType) throws SQLException {

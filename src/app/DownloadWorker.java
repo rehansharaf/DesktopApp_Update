@@ -103,7 +103,8 @@ public class DownloadWorker extends SwingWorker<Object, Object> {
         ftp.login(user, pass);
         ftp.setFileType(FTP.BINARY_FILE_TYPE);
 
-        if(host.equals("10.0.0.91"))
+//      if(host.equals("10.0.0.91"))
+        if(host.equals(CheckUpdate.prop_local.getProperty("local_host")))
         	ftp.enterLocalPassiveMode();
         
         ftp.setKeepAlive(true);

@@ -74,13 +74,16 @@ public class MainUI extends javax.swing.JFrame {
      * Creates new form MainUI
      */
 	
-	private String host = "10.0.0.91";
+	private String host = "";
 	//private String host = "182.184.111.111";
-	private String user = "rehanedex";
-	private String pass = "rehanedex";
+	private String user = "";
+	private String pass = "";
 	
     public MainUI() {
     	//setResizable(false);
+    	host = CheckUpdate.prop_local.getProperty("local_host");
+    	user = CheckUpdate.prop_local.getProperty("user");
+    	pass = CheckUpdate.prop_local.getProperty("pass");
         initComponents();
     }
 
