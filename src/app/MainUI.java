@@ -69,6 +69,9 @@ import java.awt.FlowLayout;
  * @author Rehan
  */
 public class MainUI extends javax.swing.JFrame {
+	
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerConfig.getLogger(MainUI.class);
 
     /**
      * Creates new form MainUI
@@ -4683,6 +4686,7 @@ public class MainUI extends javax.swing.JFrame {
     				            try {
     								uploadJ.progressBarVal(progress);
     							} catch (MalformedURLException e) {
+    								LoggerConfig.logException(logger,"Error on Uploading File: ", e);
     								e.printStackTrace();
     							}
     				        }else {
@@ -4746,6 +4750,7 @@ public class MainUI extends javax.swing.JFrame {
                 	                try {
     									uploadJ.progressBarVal(progress);
     								} catch (MalformedURLException e) {
+    									LoggerConfig.logException(logger,"Error on Uploading File: ", e);
     									e.printStackTrace();
     								}
                 	            }else {

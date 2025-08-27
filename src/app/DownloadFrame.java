@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
@@ -33,6 +34,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 public class DownloadFrame extends javax.swing.JDialog {
+	
+	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LoggerConfig.getLogger(DownloadFrame.class);
 
     private static String host;
     private static String user;
@@ -220,6 +224,7 @@ public class DownloadFrame extends javax.swing.JDialog {
                                 try {
                                     downloadp.progressBarVal(progress);
                                 } catch (MalformedURLException e) {
+                                	LoggerConfig.logException(logger,"Error on Downloading File: ", e);
                                     e.printStackTrace();
                                 }
                             } else {
@@ -235,8 +240,10 @@ public class DownloadFrame extends javax.swing.JDialog {
                     worker.execute();
                 } catch (MalformedURLException ex) {
                     ex.printStackTrace();
+                    LoggerConfig.logException(logger,"Error on Downloading File: ", ex);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
+                    LoggerConfig.logException(logger,"Error on Downloading File: ", e1);
                 }
             }
         }
